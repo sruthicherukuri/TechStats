@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cloudbees-web-app xmlns="http://www.cloudbees.com/xml/webapp/1">
+  <!-- <environment name="prod">
+    <appid>sjsu272/trendz</appid>
+    <context-param>
+      <param-name>mypassword</param-name>
+      <param-value>cmpe272_db</param-value>
+    </context-param> -->
+    <resource name="jdbc/cmpe272" auth="Container" type="javax.sql.DataSource">
+      <param name="username" value="cmpe272_db" />
+      <param name="password" value="cmpe272_db" />
+      <param name="url" value="jdbc:mysql://ec2-23-21-211-172.compute-1.amazonaws.com:3306/cmpe272" />
+    </resource>
+<!--  </environment>
+
+
+  <environment name="local">
+    <context-param>
+      <param-name>mypassword</param-name>
+      <param-value>admin</param-value>
+    </context-param>
+    <resource name="jdbc/esp" auth="Container" type="javax.sql.DataSource">
+      <param name="username" value="root-test" />
+      <param name="password" value="admin" />
+      <param name="url" value="jdbc:mysql://localhost/esp/esp-test" />
+    </resource>
+  </environment>
+
+  A common database
+  <resource name="jdbc/DATASOURCE_NAME2" auth="Container" type="javax.sql.DataSource">
+    <param name="username" value="DB2_USER" />
+    <param name="password" value="DB2_PASS" />
+    <param name="url" value="jdbc:mysql://DB_HOST:3306/DB_NAME2" />
+  </resource> -->
+</cloudbees-web-app>

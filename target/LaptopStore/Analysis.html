@@ -1,0 +1,604 @@
+<!Doctype html>
+<html>
+<head>
+<title>TechStats - Analysis</title>
+<!--links declarations -->
+
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/menuPanda.js"></script>
+<link rel="stylesheet" href="css/mpDefaultSkin.css" />
+<link href="assets/css/bootstrap.css" rel="stylesheet">
+<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<style>
+/* GLOBAL STYLES
+    -------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+body {
+	padding-bottom: 40px;
+	color: #5a5a5a;
+}
+
+/* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	margin-top: 20px;
+	margin-bottom: -90px;
+	/* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+}
+
+.navbar-wrapper .navbar {
+	
+}
+
+/* Remove border and change up box shadow for more contrast */
+.navbar .navbar-inner {
+	border: 0;
+	-webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+	-moz-box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+	box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+}
+
+/* Downsize the brand/project name a bit */
+.navbar .brand {
+	padding: 14px 20px 16px;
+	/* Increase vertical padding to match navbar links */
+	font-size: 16px;
+	font-weight: bold;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .5);
+}
+
+/* Navbar links: increase padding for taller navbar */
+.navbar .nav>li>a {
+	padding: 15px 20px;
+}
+
+/* Offset the responsive button for proper vertical alignment */
+.navbar .btn-navbar {
+	margin-top: 10px;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+    -------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+	margin-bottom: 60px;
+}
+
+.carousel .container {
+	position: relative;
+	z-index: 9;
+}
+
+.carousel-control {
+	height: 80px;
+	margin-top: 15px;
+	font-size: 120px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+	background-color: transparent;
+	border: 0;
+	z-index: 10;
+}
+
+.carousel .item {
+	height: 500px;
+}
+
+.carousel img {
+	position: absolute;
+	top: 95px;
+	left: 0;
+	min-width: 100%;
+	height: 350px;
+}
+
+.carousel-caption {
+	background-color: transparent;
+	position: static;
+	max-width: 550px;
+	padding: 0 20px;
+	margin-top: 200px;
+}
+
+.carousel-caption h1,.carousel-caption .lead {
+	margin: 0;
+	line-height: 1.25;
+	color: #fff;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+}
+
+.carousel-caption .btn {
+	margin-top: 10px;
+}
+
+/* MARKETING CONTENT
+    -------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .span4 {
+	text-align: center;
+}
+
+.marketing h2 {
+	font-weight: normal;
+}
+
+.marketing .span4 p {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+/* Featurettes
+    ------------------------- */
+.featurette-divider {
+	margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+
+.featurette {
+	padding-top: 120px;
+	/* Vertically center images part 1: add padding above and below text. */
+	overflow: hidden;
+	/* Vertically center images part 2: clear their floats. */
+}
+
+.featurette-image {
+	margin-top: -120px;
+	/* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+}
+
+/* Give some space on the sides of the floated elements so text doesn't run right into it. */
+.featurette-image.pull-left {
+	margin-right: 40px;
+}
+
+.featurette-image.pull-right {
+	margin-left: 40px;
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+	font-size: 50px;
+	font-weight: 300;
+	line-height: 1;
+	letter-spacing: -1px;
+}
+
+/* RESPONSIVE CSS
+    -------------------------------------------------- */
+@media ( max-width : 979px) {
+	.container.navbar-wrapper {
+		margin-bottom: 0;
+		width: auto;
+	}
+	.navbar-inner {
+		border-radius: 0;
+		margin: -20px 0;
+	}
+	.carousel .item {
+		height: 500px;
+	}
+	.carousel img {
+		width: auto;
+		height: 400px;
+		top: 75px;
+	}
+	.featurette {
+		height: auto;
+		padding: 0;
+	}
+	.featurette-image.pull-left,.featurette-image.pull-right {
+		display: block;
+		float: none;
+		max-width: 40%;
+		margin: 0 auto 20px;
+	}
+}
+
+@media ( max-width : 767px) {
+	.navbar-inner {
+		margin: -20px;
+	}
+	.carousel {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+	.carousel .container {
+		
+	}
+	.carousel .item {
+		height: 300px;
+	}
+	.carousel img {
+		height: 300px;
+	}
+	.carousel-caption {
+		width: 65%;
+		padding: 0 70px;
+		margin-top: 100px;
+	}
+	.carousel-caption h1 {
+		font-size: 30px;
+	}
+	.carousel-caption .lead,.carousel-caption .btn {
+		font-size: 18px;
+	}
+	.marketing .span4+.span4 {
+		margin-top: 40px;
+	}
+	.featurette-heading {
+		font-size: 30px;
+	}
+	.featurette .lead {
+		font-size: 18px;
+		line-height: 1.5;
+	}
+}
+
+.mp-layer {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	width: 30%;
+	max-width: 250px;
+	min-width: 130px;
+	background-color: #191a1d;
+	box-shadow: inset 0 0 20px #000000;
+	font-family: Verdana, arial, sans-serif;
+	font-size: 14px;
+	overflow: hidden;
+}
+
+.mp-layer h1 {
+	font-size: 16px;
+	color: #8d8d8d;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid #373737;
+	background-color: #121212;
+	margin: 0;
+	padding: 0;
+	text-indent: 30px;
+	background-image: url("../ashok/assets/img/menuPanda_menuP.png");
+	background-position: 95% center;
+	background-repeat: no-repeat;
+}
+
+.mp-layerlink {
+	background-image: url("../img/menuPanda_arrow.png");
+	background-repeat: no-repeat;
+	background-position: 95% center;
+}
+
+@media all and (max-width: 1024px) {
+	.mp-layer h1 {
+		background-image: none;
+	}
+	.mp-layer {
+		font-size: +20px;
+	}
+}
+
+.mp-layer ul {
+	margin: 0;
+	padding: 0;
+}
+
+.mp-layer li {
+	list-style: none;
+	display: block;
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	text-indent: 30px;
+	border-bottom: solid 1px #3d3d3d;
+	transition: all 0.5s ease;
+}
+
+.mp-layer li:hover {
+	text-indent: 50px;
+	color: 000;
+}
+
+.mp-layer a {
+	color: #727272;
+	text-decoration: none;
+	transition: all 0.5s ease;
+}
+
+.mp-layer a:hover {
+	color: #8b8b8b;
+}
+
+.mp-wrapper {
+	position: absolute;
+	overflow: scroll;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+}
+
+.mp-buttom {
+	padding: 30px;
+}
+
+#Ul1 {
+	position: absolute;
+	left: 0;
+	right: auto;
+	top: 45%;
+	width: 7em;
+	margin-top: -2.5em;
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: black;
+	*background-color: black;
+	background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc),
+		to(#0044cc));
+	background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+	background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+	background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+	background-repeat: repeat-x;
+	border-color: #0044cc #0044cc #002a80;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc',
+		endColorstr='#ff0044cc', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	text-decoration: none;
+}
+
+#Ul1:hover,#Ul1:focus,#Ul1:active,#Ul1.active,#Ul1.disabled,#Ul1[disabled]
+	{
+	color: #ffffff;
+	background-color: #0044cc;
+	*background-color: #003bb3;
+}
+</style>
+
+</head>
+
+<body>
+
+	<!--simple call -->
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $('#menu').pandfy();
+            
+
+        });
+       
+
+        function loadDataDB() {
+            var panel = "#sideMenuID";
+            var time = 500;
+            var w = $(panel).width();
+            $(panel).clearQueue().animate({ left: "-" + w }, time);
+            $(".mp-wrapper").clearQueue().animate({ left: 0 }, time);
+            //alert(str1);
+			document.getElementById('iFrame').src = 'Databases.html';
+			
+				
+
+        }
+        function loadDataOS() {
+            var panel = "#sideMenuID";
+            var time = 500;
+            var w = $(panel).width();
+            $(panel).clearQueue().animate({ left: "-" + w }, time);
+            $(".mp-wrapper").clearQueue().animate({ left: 0 }, time);
+            //alert(str1);
+			document.getElementById('iFrame').src = 'OS.html';
+			
+				
+
+        }
+        
+        function loadDataWS() {
+            var panel = "#sideMenuID";
+            var time = 500;
+            var w = $(panel).width();
+            $(panel).clearQueue().animate({ left: "-" + w }, time);
+            $(".mp-wrapper").clearQueue().animate({ left: 0 }, time);
+            //alert(str1);
+			document.getElementById('iFrame').src = 'WebServices.html';
+			
+				
+
+        }
+        function loadDataMT() {
+            var panel = "#sideMenuID";
+            var time = 500;
+            var w = $(panel).width();
+            $(panel).clearQueue().animate({ left: "-" + w }, time);
+            $(".mp-wrapper").clearQueue().animate({ left: 0 }, time);
+            //alert(str1);
+			document.getElementById('iFrame').src = 'MobileTech.html';
+			
+				
+
+        }
+        
+        function loadDataPL()
+        {
+        	  			
+ 			 var panel = "#sideMenuID";
+             var time = 500;
+             var w = $(panel).width();
+             $(panel).clearQueue().animate({ left: "-" + w }, time);
+             $(".mp-wrapper").clearQueue().animate({ left: 0 }, time);
+             //alert(str1);
+ 			//var option = document.getElementById('');
+ 			
+ 			document.getElementById('iFrame').src = 'ProgrammingLanguages.html';
+ 			
+ 			
+        }
+        
+        function loadDataGT()
+        {
+        	  			
+ 			 var panel = "#sideMenuID";
+             var time = 500;
+             var w = $(panel).width();
+             $(panel).clearQueue().animate({ left: "-" + w }, time);
+             $(".mp-wrapper").clearQueue().animate({ left: 0 }, time);
+             //alert(str1);
+ 			//var option = document.getElementById('');
+ 			
+ 			document.getElementById('iFrame').src = 'gitHubRepo.html';
+ 			
+ 			
+        }
+        
+        function loadDataRT()
+        {
+        	  			
+ 			 var panel = "#sideMenuID";
+             var time = 500;
+             var w = $(panel).width();
+             $(panel).clearQueue().animate({ left: "-" + w }, time);
+             $(".mp-wrapper").clearQueue().animate({ left: 0 }, time);
+             //alert(str1);
+ 			//var option = document.getElementById('');
+ 			
+ 			document.getElementById('iFrame').src = 'ResponseTime.html';
+ 			
+ 			
+        }
+        
+        function loadDataSF()
+        {
+        	  			
+ 			 var panel = "#sideMenuID";
+             var time = 500;
+             var w = $(panel).width();
+             $(panel).clearQueue().animate({ left: "-" + w }, time);
+             $(".mp-wrapper").clearQueue().animate({ left: 0 }, time);
+             //alert(str1);
+ 			//var option = document.getElementById('');
+ 			
+ 			document.getElementById('iFrame').src = 'sfoAnalysis.html';
+ 			
+ 			
+        }
+        
+        function loadDataIDE()
+        {
+        	  			
+ 			 var panel = "#sideMenuID";
+             var time = 500;
+             var w = $(panel).width();
+             $(panel).clearQueue().animate({ left: "-" + w }, time);
+             $(".mp-wrapper").clearQueue().animate({ left: 0 }, time);
+             //alert(str1);
+ 			//var option = document.getElementById('');
+ 			
+ 			document.getElementById('iFrame').src = 'IDE.html';
+ 			
+ 			
+        }
+        
+        function loadDataIQ()
+        {
+        	 var panel = "#sideMenuID";
+             var time = 500;
+             var w = $(panel).width();
+             $(panel).clearQueue().animate({ left: "-" + w }, time);
+             $(".mp-wrapper").clearQueue().animate({ left: 0 }, time);
+             //alert(str1);
+ 			//var option = document.getElementById('');
+ 			
+ 			document.getElementById('iFrame').src = 'displayInterview.html';	
+        }
+
+    </script>
+	<div class="navbar-wrapper" style="left: 0; top: 0;">
+		<!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+		<div class="container">
+			<div class="masthead" style="margin-right: 100px;">
+				<ul class="nav nav-pills pull-right">
+					<li><a style="color: black;" href="Home.html">Home</a></li>
+					<li class="active"><a style="color: black;" href="#">Analysis</a></li>
+					<li><a style="color: black;" href="About.html">About</a></li>
+					<li><a style="color: black;" href="FunFacts.html">Trivia</a></li>
+				</ul>
+				<!-- <h3 style="margin-left:100px;">TechStats</h3> -->
+				<h3>
+				<img src="assets/img/TSLogo.png" width="150px" height="150px" style="margin-left: 100px;" />
+				</h3>
+			</div>
+		</div>
+		<!-- /.container -->
+
+	</div>
+
+
+	<!-- /.navbar-wrapper -->
+
+	<!--Default menu sintax -->
+
+	<div style="left: 0; top: 105px;">
+		<nav id="menu" style="position: relative;">
+
+			<ul data-title="Choose Category">
+
+				<li><a href="#" onclick="loadDataPL();">Programming
+						Languages-SOF</a></li>
+				<li><a href="#" onclick="loadDataGT();">Programming
+						Languages-GH</a></li>
+				<li><a href="#" onclick="loadDataDB();">Databases</a></li>
+				<li><a href="#" onclick="loadDataMT();">Mobile Technology</a></li>
+				<li><a href="#" onclick="loadDataOS();">Operating Systems</a></li>
+
+
+
+				<li><a href="#" onclick="loadDataWS();">Web Services</a></li>
+				<li><a href="#" onclick="loadDataIDE();">IDE's</a></li>
+				<li><a href="#" onclick="loadDataSF();">StackOverFlow
+						Analysis</a></li>
+				<li><a href="#" onclick="loadDataRT();">Response Time</a></li>
+				<li><a href="#" onclick="loadDataIQ();">Interview Questions</a></li>
+			</ul>
+		</nav>
+	</div>
+	<hr style="border-color: lightgray;" />
+	<div style="text-align: center; z-index: 9999; margin-top: 80px;"
+		id="buttonPlaceholder"></div>
+	<div style="z-index: 9999; margin-top: 80px;" id="Div1"></div>
+
+	<div style="text-align: center; margin-top: 10px;">
+		<iframe id="iFrame" height='600' width='1000' frameborder='0'
+			src="FrontGraph.html"
+			style="border-radius: 10px; border-color: #E8E8E8;"></iframe>
+	</div>
+	<hr style="border-color: lightgray; margin-bottom: 10px" />
+	<div class="container marketing">
+
+
+
+
+
+
+		<!-- FOOTER -->
+		<footer>
+
+			<p style="align: left; margin-left: 100px;">&copy; CMPE 272 -
+				Team 10 &middot;</p>
+		</footer>
+
+	</div>
+</body>
+</html>

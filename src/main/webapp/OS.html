@@ -1,0 +1,177 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>StackOverflow Analysis</title>
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  
+  <style>
+div.chartTable
+{
+width:48%;
+padding:0px;
+border:1px solid gray;
+margin:10px;
+}
+#overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top:-150px; /* negative half the size of height */
+    margin-left:-150px; /* negative half the size of width */
+    width: 300px;
+    height: 300px;
+    background-color: #FFFFFF;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    z-index: 10000;
+   
+}
+#overlayEntire
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    z-index: 9999;
+   
+}
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type='text/javascript'>//<![CDATA[ 
+                                        
+    
+function displayProducts(){
+	 var name0, name1, name2, name3,name4;
+	 var count0, count1,count2, count3,count4;
+	 var share1, share0, share2, share3,share4; 
+	 var value = 'OperatingSystems';
+	 var URL = "http://trendz.sjsu272.cloudbees.net/rest/users/getscripting";
+		
+		$.ajax({
+			type: "POST",
+			url: URL,
+			contentType: "text/plain",
+			dataType: 'json',
+			data :value,
+				success: function(data, textStatus, jqXHR){
+					name0 = (data[0]["Name"]);
+					count0 = (data[0]["Count"]);
+					name1 = (data[1]["Name"]);
+					count1 = (data[1]["Count"]);
+					name2 = (data[2]["Name"]);
+					count2 = (data[2]["Count"]);
+					name3 = (data[3]["Name"]);
+					count3 = (data[3]["Count"]);
+					name4 = (data[4]["Name"]);
+					count4 = (data[4]["Count"]);
+					
+					share0 = (100*count0)/(count1+count0+count1+count2+count3+count4);
+					share1 = (100*count1)/(count1+count0+count1+count2+count3+count4);
+					share2 = (100*count2)/(count1+count0+count1+count2+count3+count4);
+					share3 = (100*count3)/(count1+count0+count1+count2+count3+count4);
+					share4 = (100*count4)/(count1+count0+count1+count2+count3+count4);
+					
+					
+					chart(name0,share0,name1,share1,name2,share2,name3,share3,name4,share4);
+				},
+				error: function(textStatus, jqXHR,errorThrown){
+					alert(textStatus+" "+jqXHR);
+				}
+
+			});
+}
+
+
+function chart(name0,share0,name1,share1,name2,share2,name3,share3,name4,share4) {
+
+	 var chart;
+	    
+	    $(document).ready(function () {
+	    	
+	    	// Build the chart
+	        $('#container').highcharts({
+	            chart: {
+	                plotBackgroundColor: null,
+	                plotBorderWidth: null,
+	                plotShadow: false
+	            },
+	            title: {
+	                text: 'Graphical Statistics of Operating Systems'
+	            },
+	            subtitle: {
+	                text: 'Source: StackOverflow.com'
+	            },
+	            tooltip: {
+	        	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	            },
+	            plotOptions: {
+	                pie: {
+	                    allowPointSelect: true,
+	                    cursor: 'pointer',
+	                    dataLabels: {
+	                         enabled: true,
+	                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+	                    style: {
+	                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+	                    }
+	                    },
+	                    showInLegend: true
+	                }
+	            },
+	            credits: {
+	                enabled: false
+	              },
+	            series: [{
+	                type: 'pie',
+	                name: 'Operating Systems',
+	                data: [
+	                   
+	                    {
+	                        name: name0,
+	                        y: share0,
+	                        sliced: true,
+	                        selected: true
+	                    },
+	                    [name1,share1],
+	                    [name2,share2],
+	                    [name3,share3],
+	                    [name4,share4]
+	                    
+	                ]
+	            }]
+	        });
+	    });
+}
+    
+
+
+
+//]]>  
+
+</script>
+
+
+</head>
+<body onload="displayProducts()">
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+  
+</body>
+
+
+</html>
+

@@ -1,0 +1,121 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>StackOverflow Analysis</title>
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type='text/javascript'>//<![CDATA[ 
+                                          
+function displayProducts(){
+	 var value = 'GitHub';
+	 var name0, name1, count0, count1; 
+	 var name2, count2, name3, count3;
+	 var name4, count4, name5, count5;
+	 var name6, count6, name7, count7;
+	 var name8, count8, name9, count9;
+	 var URL = "http://trendz.sjsu272.cloudbees.net/rest/users/getscripting";
+	 
+		
+		$.ajax({
+				type: "POST",
+				url: URL,
+				contentType: "text/plain",
+				dataType: 'json',
+				data :value,
+				success: function(data, textStatus, jqXHR){
+					name0 = (data[0]["Name"]);
+					count0 = (data[0]["Count"]);
+					name1 = (data[1]["Name"]);
+					count1 = (data[1]["Count"]);
+					name2 = (data[2]["Name"]);
+					count2 = (data[2]["Count"]);
+					name3 = (data[3]["Name"]);
+					count3 = (data[3]["Count"]);
+					name4 = (data[4]["Name"]);
+					count4 = (data[4]["Count"]);
+					name5 = (data[5]["Name"]);
+					count5 = (data[5]["Count"]);
+					name6 = (data[6]["Name"]);
+					count6 = (data[6]["Count"]);
+					name7 = (data[7]["Name"]);
+					count7 = (data[7]["Count"]);
+					name7 = (data[8]["Name"]);
+					count7 = (data[8]["Count"]);
+					name7 = (data[9]["Name"]);
+					count7 = (data[9]["Count"]);
+					chart(name0,name1, name2, name3,name4,name5,name6,name7,name8,name9, count0,count1, count2, count3, count4, count5, count6, count7, count8, count9);
+				},
+				error: function(textStatus, jqXHR,errorThrown){
+					alert(textStatus+" "+jqXHR);
+				}
+
+			});
+}
+                                                             
+                                        
+function chart(name0,name1, name2, name3,name4,name5,name6, name7,name8,name9, count0,count1, count2, count3, count4, count5, count6, count7, count8, count9) {
+    $('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Graphical Statistics of Programming Languages'
+        },
+        subtitle: {
+            text: 'GitHub.com'
+        },
+        xAxis: {
+            categories: [name0,
+                         name1,
+                         name2,
+                         name3,
+                         name4,
+                         name5,
+                         name6,
+                         name7,
+                         name8,
+                         name9]
+        },
+        yAxis: {
+            title: {
+                text: 'No OF Repositories'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'Repositories',
+            colorByPoint:true,
+            data: [count0,count1, count2, count3, count4, count5, count6, count7,count8, count9]
+        }]
+    });
+};
+
+
+
+</script>
+
+
+</head>
+<body onload="displayProducts()">
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+  
+</body>
+
+
+</html>
+
